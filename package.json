@@ -1,0 +1,30 @@
+{
+  "name": "ghub-back-end",
+  "version": "1.0.0",
+  "description": "Back end repository for Github User Breakdown.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/team-gh-user-breakdown/ghub-back-end.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/team-gh-user-breakdown/ghub-back-end/issues"
+  },
+  "homepage": "https://github.com/team-gh-user-breakdown/ghub-back-end#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "helmet": "^3.16.0",
+    "knex": "^0.16.3",
+    "sqlite3": "^4.0.6"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10",
+    "supertest": "^4.0.0"
+  }
+}

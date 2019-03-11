@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const db = require('../../database/dbConfig.js');
+const { restricted } = require('../../custom_middleware/authMiddleware')
 
 const router = express.Router();
 
@@ -70,6 +71,19 @@ router.post('/login', (req, res) => {
             error
         })
     }
+});
+
+router.get('/users', restricted, (req, res) => {
+    db('users')
+        .then(users => {
+            res.status(200).json(users)
+        })
+        .catch(error => {
+            res.status(500).json({
+                message: "Server could not get users",
+                error
+            })
+        })
 });
 
 module.exports = router;

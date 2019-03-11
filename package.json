@@ -4,7 +4,7 @@
   "description": "Back end repository for Github User Breakdown.",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env DB_ENV=testing jest --watch --verbose",
+    "test": "cross-env DB_ENV=development jest --watch",
     "server": "nodemon index.js"
   },
   "repository": {

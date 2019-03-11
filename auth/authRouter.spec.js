@@ -1,7 +1,14 @@
-const request = require('supertest');
-const router = require('./authRouter');
+const request = require("supertest");
+const authRouter = require("./authRouter");
 
-it('should return 200', async() => {
-    const res = await request(router).get('/')
-    expect(res.status).toBe(200)
-})
+describe("AUTHENTICATION routes", () => {
+  describe("POST routes", () => {
+    describe("REGISTER route", () => {
+      it("should send a status code 201 if user is successfully registered", async () => {
+          const res = await request(authRouter).post("/register").send({username: 'Leianne', password: 'password'});
+          console.log(res)
+          expect(res.status).toBe(3);
+      });
+    });
+  });
+});

@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const secrets = require('../config/secrets');
 module.exports = { checkUserInfo, restricted }
 
 // CHECKING that users enter valid username and password
@@ -14,7 +15,7 @@ function checkUserInfo(req, res, next) {
 function restricted(req, res, next) {
     const token = req.headers.authorization;
     if(token) {
-        jwt.verify(token, 's', (err, decodedToken) => {
+        jwt.verify(token, secrets.jwtSecret, (err, decodedToken) => {
             if(decodedToken) {
                 next();
             } else {

@@ -18,6 +18,7 @@
   "homepage": "https://github.com/team-gh-user-breakdown/ghub-back-end#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "helmet": "^3.16.0",
     "knex": "^0.16.3",

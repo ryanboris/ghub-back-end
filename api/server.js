@@ -1,12 +1,9 @@
 const express = require('express');
-const logger = require('morgan');
-const helmet = require('helmet');
-const cors = require('cors');
 const server = express();
 const authRoutes = require('../auth/authRouter');
+const middlewareConfig = require('./serverMiddleware');
 
-server.use(logger());
-server.use(cors());
-server.use(helmet());
+middlewareConfig(server);
 server.use('/api/auth', authRoutes)
+
 module.exports = server;

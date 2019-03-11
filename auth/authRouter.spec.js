@@ -1,13 +1,7 @@
 const request = require('supertest');
-const authRouter = require('./authRouter');
+const router = require('./authRouter');
 
-describe('Authentication Routes', () => {
-    describe('POST ROUTES', () => {
-        describe('/register', () => {
-            
-        })
-        describe('/register', () => {
-            
-        })
-    })
+it('should return 200', async() => {
+    const res = await request(router).get('/')
+    expect(res.status).toBe(200)
 })

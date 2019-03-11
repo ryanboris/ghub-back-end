@@ -17,6 +17,21 @@ module.exports = {
     useNullAsDefault: true,
   },
 
+  testing: {
+    client: 'sqlite3',
+    connection: {
+      filename: './database/testing.db3'
+    },
+    migrations: {
+      tableName: "knex_migrations",
+      directory: "./database/migrations"
+    },
+    seeds: {
+      directory: "./database/seeds"
+    },
+    useNullAsDefault: true,
+  },
+
   production: {
     client: 'postgresql',
     connection: {

@@ -3,7 +3,7 @@ const logger = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
 const server = express();
-const authRoutes = require('../auth');
+const authRoutes = require('../auth/authRouter');
 
 server.use(logger());
 server.use(cors());

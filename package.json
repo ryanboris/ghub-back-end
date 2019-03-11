@@ -4,7 +4,8 @@
   "description": "Back end repository for Github User Breakdown.",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon"
+    "server": "nodemon",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
     "helmet": "^3.16.0",
     "jsonwebtoken": "^8.5.0",
     "knex": "^0.16.3",
+    "pg": "^7.8.2",
     "sqlite3": "^4.0.6"
   },
   "devDependencies": {

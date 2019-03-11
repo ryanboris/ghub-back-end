@@ -1,5 +1,14 @@
 // Update with your config settings.
 
+const localPgConnection = {
+  host: 'localhost',
+  database: 'github',
+  user: 'test',
+  password: 'testing'
+}
+
+const prodDbConnection = process.env.DATABASE_URL || localPgConnection;
+
 module.exports = {
 
   development: {
@@ -33,18 +42,13 @@ module.exports = {
   },
 
   production: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
+    client: 'pg',
+    connection: prodDbConnection,
     migrations: {
-      tableName: 'knex_migrations'
+      directory: './database/migrations',
+    },
+    seeds: {
+      directory: './database/seeds',      
     }
   }
 

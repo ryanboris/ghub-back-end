@@ -86,4 +86,25 @@ router.get('/users', restricted, (req, res) => {
         })
 });
 
+router.get('/users/:id', restricted, (req, res) => {
+    db('users')
+        .where({ id: req.params.id })
+        .first()
+        .then(user => {
+            if(user){
+                res.status(200).json(user)
+            }else{
+                res.status(404).json({
+                    message: "Could not find user with given id"
+                })
+            }
+        })
+        .catch(error => {
+            res.status(500).json({
+                message: "Server could not get users",
+                error
+            })
+        })
+});
+
 module.exports = router;

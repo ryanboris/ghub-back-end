@@ -3,6 +3,10 @@ const data = require('../../MOCK_DATA.json')
 
 const router = express.Router();
 
+router.get('/', (req, res) => {
+    res.status(200).json(data)
+});
+
 router.get('/search/:query', (req, res) => {
     try {
         const response = data.filter(obj => {

@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/search/:query', (req, res) => {
     try {
         const response = data.filter(obj => {
-            return obj.username.includes(req.params.query)
+            return obj.username.includes(req.params.query);
         })
         if(response.length > 0){
             res.status(200).json(response);

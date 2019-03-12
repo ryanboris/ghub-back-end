@@ -29,4 +29,12 @@ describe('Authetication', () => {
             expect(res.type).toBe('application/json')
         });
     });
+
+    describe('Post /api/auth/login', () => {
+        it('Should return JSON', async() => {
+            const res = await request(server).post('/api/auth/login').send({ username: 'test', password: 'pass'});
+
+            expect(res.type).toBe('application/json')
+        });
+    });
 });

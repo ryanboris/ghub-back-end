@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const db = require('../../database/dbConfig.js');
-const { restricted } = require('../../custom_middleware/authMiddleware')
+const { restricted } = require('../../custom_middleware/authMiddleware');
 
 const router = express.Router();
 
@@ -53,7 +53,12 @@ router.post('/login', (req, res) => {
                     const token = generateToken(user);
                     res.status(200).json({
                         message: `Welcome ${user.username}`,
-                        token
+                        token,
+                        userData: {
+                            id: user.id,
+                            username: user.username,
+                            email: user.email
+                        }
                     })
                 }else{
                     res.status(401).json({ message: "Invalid credentials" })

@@ -19,11 +19,30 @@ describe('Authetication', () => {
             expect(res.body).toEqual([1])
         });
 
-        it('Should return JSON', async() => {
+        it('Should return 201 on successful login', async() => {
             const res = await request(server).post('/api/auth/register').send({
                 username: 'test', 
                 password: 'pass',
-                email: 'test@testing.test'
+                email: 'test1@testing.test'
+            });
+
+            expect(res.status).toBe(201);
+        });
+
+        it('Should return 400 on Bad Request', async() => {
+            const res = await request(server).post('/api/auth/register').send({
+                username: 'test', 
+                password: 'pass'
+            });
+
+            expect(res.status).toBe(400);
+        });
+
+        it('Should return JSON', async() => {
+            const res = await request(server).post('/api/auth/register').send({
+                username: 'test1', 
+                password: 'pass',
+                email: 'test1@testing.test'
             });
 
             expect(res.type).toBe('application/json')

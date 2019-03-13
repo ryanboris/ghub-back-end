@@ -110,4 +110,56 @@ router.get('/users/:id', restricted, (req, res) => {
         })
 });
 
+router.put('/users/:id', restricted, (req, res) => {
+    if(req.body.password){
+        res.status(401).json({
+            message: "You are unauthorized to change the password"
+        })
+    }
+    try {
+        db.update(req.params.id, req.body)
+            .then(count => {
+                if(count){
+                    res.status(200).json({
+                        message: `User with id ${req.params.id} was updated`
+                    })
+                }else{
+                    res.status(404).json({
+                        message: "Could not find user with given id"
+                    })
+                }
+            })
+            .catch(error => {
+                res.status(400).json({
+                    message: "Could not update user due to bad request",
+                    error
+                })
+            })
+    } catch (error) {
+        res.status(500).json({
+            message: "Server could not update user",
+            error
+        })
+    }
+});
+
+router.delete('/users/:id', restricted, (req, res) => {
+    db.remove(req.params.id)
+        .then(count => {
+            if(count){
+                res.status(204).end();
+            }else{
+                res.status(404).json({
+                    message: "Could not find user with given id"
+                })
+            }
+        })
+        .catch(error => {
+            res.status(500).json({
+                message: "Server could not delete user",
+                error
+            })
+        })
+});
+
 module.exports = router;

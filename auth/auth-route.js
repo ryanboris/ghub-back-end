@@ -2,8 +2,8 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const db = require('../../database/dbConfig.js');
-const { restricted } = require('../../custom_middleware/authMiddleware');
+const db = require('./auth-helpers.js');
+const { restricted } = require('./authMiddleware.js');
 
 const router = express.Router();
 
@@ -22,8 +22,7 @@ router.post('/register', (req, res) => {
     try {
         req.body.password = bcrypt.hashSync(req.body.password, 12);
     
-        db('users')
-            .insert(req.body)
+        db.insert(req.body)
             .then(user => {
                 res.status(201).json(user);
             })
@@ -45,9 +44,8 @@ router.post('/login', (req, res) => {
     try {
         const { username, password } = req.body;
     
-        db('users')
-            .where({ username })
-            .first()
+        db
+            .findByUsername(username)
             .then(user => {
                 if(user && bcrypt.compareSync(password, user.password)){
                     const token = generateToken(user);
@@ -79,7 +77,8 @@ router.post('/login', (req, res) => {
 });
 
 router.get('/users', restricted, (req, res) => {
-    db('users')
+    db
+        .get()
         .then(users => {
             res.status(200).json(users)
         })
@@ -92,9 +91,8 @@ router.get('/users', restricted, (req, res) => {
 });
 
 router.get('/users/:id', restricted, (req, res) => {
-    db('users')
-        .where({ id: req.params.id })
-        .first()
+    db
+        .findById(req.params.id)
         .then(user => {
             if(user){
                 res.status(200).json(user)

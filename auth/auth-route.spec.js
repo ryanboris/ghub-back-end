@@ -55,5 +55,27 @@ describe('Authetication', () => {
 
             expect(res.type).toBe('application/json')
         });
+
+        it('Should return unauthorized when credentials invalid', async() => {
+            const res = await request(server).post('/api/auth/login').send({ username: 'test', password: 'pass'});
+
+            expect(res.status).toBe(401)
+        });
+    });
+
+    describe('Get /users', () => {
+        it('Should return unauthorized with no token', async() => {
+            const res = await request(server).get('/api/auth/users');
+
+            expect(res.status).toBe(401)
+        });
+    });
+
+    describe('Get /users/id', () => {
+        it('Should return unauthorized with no token', async() => {
+            const res = await request(server).get('/api/auth/users/4');
+
+            expect(res.status).toBe(401)
+        });
     });
 });

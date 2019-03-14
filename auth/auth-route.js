@@ -28,13 +28,13 @@ router.post('/register', (req, res) => {
             })
             .catch(error => {
                 res.status(400).json({
-                    message: "Bad request due to SQL contraint",
+                    message: "Bad request due to SQL contraint.",
                     error
                 })
             })
     } catch (error) {
         res.status(500).json({
-            message: "Server could not register user",
+            message: "Server could not register user.",
             error
         })
     }
@@ -59,18 +59,18 @@ router.post('/login', (req, res) => {
                         }
                     })
                 }else{
-                    res.status(401).json({ message: "Invalid credentials" })
+                    res.status(401).json({ message: "Invalid credentials." })
                 }
             })
             .catch(error => {
                 res.status(400).json({
-                    message: "Bad request, please provide a username and password",
+                    message: "Bad request, please provide a username and password.",
                     error
                 })
             })
     } catch (error) {
         res.status(500).json({
-            message: "Server could not login user",
+            message: "Server could not login user.",
             error
         })
     }
@@ -84,7 +84,7 @@ router.get('/users', restricted, (req, res) => {
         })
         .catch(error => {
             res.status(500).json({
-                message: "Server could not get users",
+                message: "Server could not get users.",
                 error
             })
         })
@@ -98,13 +98,13 @@ router.get('/users/:id', restricted, (req, res) => {
                 res.status(200).json(user)
             }else{
                 res.status(404).json({
-                    message: "Could not find user with given id"
+                    message: "Could not find user with given id."
                 })
             }
         })
         .catch(error => {
             res.status(500).json({
-                message: "Server could not get users",
+                message: "Server could not get users.",
                 error
             })
         })
@@ -113,7 +113,7 @@ router.get('/users/:id', restricted, (req, res) => {
 router.put('/users/:id', restricted, (req, res) => {
     if(req.body.password){
         res.status(401).json({
-            message: "You are unauthorized to change the password"
+            message: "You are unauthorized to change the password."
         })
     }
     try {
@@ -121,23 +121,23 @@ router.put('/users/:id', restricted, (req, res) => {
             .then(count => {
                 if(count){
                     res.status(200).json({
-                        message: `User with id ${req.params.id} was updated`
+                        message: `User with id ${req.params.id} was updated.`
                     })
                 }else{
                     res.status(404).json({
-                        message: "Could not find user with given id"
+                        message: "Could not find user with given id."
                     })
                 }
             })
             .catch(error => {
                 res.status(400).json({
-                    message: "Could not update user due to bad request",
+                    message: "Could not update user due to bad request.",
                     error
                 })
             })
     } catch (error) {
         res.status(500).json({
-            message: "Server could not update user",
+            message: "Server could not update user.",
             error
         })
     }
@@ -150,13 +150,13 @@ router.delete('/users/:id', restricted, (req, res) => {
                 res.status(204).end();
             }else{
                 res.status(404).json({
-                    message: "Could not find user with given id"
+                    message: "Could not find user with given id."
                 })
             }
         })
         .catch(error => {
             res.status(500).json({
-                message: "Server could not delete user",
+                message: "Server could not delete user.",
                 error
             })
         })

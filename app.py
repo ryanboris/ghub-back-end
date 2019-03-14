@@ -1,8 +1,8 @@
 #!/usr/bin/env python
-import sys
 from requests import get as GET
 import requests
 import pandas as pd
+import sys
 '''
 The meat and potatoes of the app- Take in data from the API
  -apply magic.DS- dump it into the database
@@ -77,10 +77,9 @@ def app(username):
     commits = pd.Series(punch_df[2])
     assemble = pd.concat([day, hour, commits], axis=1)
     assemble.columns = ['Day', 'Hour', 'Commits']
-    comms = assemble.to_json(orient='records')
+    comms = assemble.to_json(orient='index')
 
     return comms, lang_json
 
 
 print(app(sys.argv[1]))
-sys.stdout.flush()
